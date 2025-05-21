@@ -1,0 +1,118 @@
+DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Let There Be Light (LTBL)</title>  <!-- Firebase SDKs -->  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js"></script>  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBsZjNnhwoLBRnHjiAw-vYiJU3PLBKMO5o",
+      authDomain: "ltbl-fd8bd.firebaseapp.com",
+      databaseURL: "https://ltbl-fd8bd-default-rtdb.firebaseio.com",
+      projectId: "ltbl-fd8bd",
+      storageBucket: "ltbl-fd8bd.appspot.com",
+      messagingSenderId: "312163570027",
+      appId: "1:312163570027:android:03cbccd490c6507937fc2e"
+    };
+
+    const app = firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
+    function submitIntakeForm(event) {
+      event.preventDefault();
+
+      const name = document.querySelector('#name').value;
+      const email = document.querySelector('#email').value;
+      const phone = document.querySelector('#phone').value;
+      const message = document.querySelector('#message').value;
+      const housing = document.querySelector('#housing').checked;
+      const education = document.querySelector('#education').checked;
+      const welcome = document.querySelector('#welcome').checked;
+
+      firebase.database().ref('intake_forms').push({
+        name, email, phone, message,
+        services: { housing, education, welcome },
+        submittedAt: new Date().toISOString()
+      }).then(() => {
+        alert("Form submitted successfully");
+      }).catch(error => {
+        alert("Error: " + error.message);
+      });
+    }
+
+    function toggleServiceDetails() {
+      document.getElementById('housingDetails').style.display = document.getElementById('housing').checked ? 'block' : 'none';
+      document.getElementById('educationDetails').style.display = document.getElementById('education').checked ? 'block' : 'none';
+      document.getElementById('welcomeDetails').style.display = document.getElementById('welcome').checked ? 'block' : 'none';
+    }
+  </script>  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+    header { background: #222; color: white; padding: 1rem; text-align: center; position: relative; }
+    .menu-toggle { position: absolute; top: 1rem; left: 1rem; font-size: 1.5rem; cursor: pointer; color: white; background: transparent; border: none; }
+    nav { display: none; flex-direction: column; background: #444; padding: 1rem; }
+    nav a { color: white; text-decoration: none; margin-bottom: 0.5rem; }
+    nav.active { display: flex; }
+    .hero { text-align: center; padding: 2rem; background: #007BFF; color: white; }
+    .cards { display: flex; flex-direction: column; gap: 1rem; padding: 1rem; }
+    .card { background: white; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    form { background: white; padding: 1rem; margin: 1rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    input, textarea, button, select, label { width: 100%; padding: 0.5rem; margin: 0.5rem 0; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box; }
+    footer { text-align: center; padding: 1rem; background: #222; color: white; }
+    iframe { width: 100%; height: 600px; border: 0; }
+    @media(min-width: 768px) { nav { display: flex !important; flex-direction: row; justify-content: center; } .menu-toggle { display: none; } .cards { flex-direction: row; } }
+  </style>  <script>
+    function toggleMenu() {
+      const nav = document.querySelector('nav');
+      nav.classList.toggle('active');
+    }
+  </script></head>
+<body>
+  <header>
+    <button class="menu-toggle" onclick="toggleMenu()">&#9776;</button>
+    <h1>Let There Be Light (LTBL)</h1>
+    <p>Empowering communities. Bridging justice.</p>
+  </header>  <nav>
+    <a href="#services">Get Help</a>
+    <a href="#donate">Support Us</a>
+    <a href="#resources">Mission & Vision</a>
+    <a href="#team">Team</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#contact">Contact</a>
+  </nav>  <section class="hero">
+    <h2>Welcome to LTBL</h2>
+    <p>Choose your path to justice and support.</p>
+  </section>  <section id="services">
+    <h3>Start Here: Intake Form</h3>
+    <form onsubmit="submitIntakeForm(event)">
+      <input id="name" type="text" placeholder="Full Name" required />
+      <input id="email" type="email" placeholder="Email Address" required />
+      <input id="phone" type="tel" placeholder="Phone Number" required />
+      <textarea id="message" rows="3" placeholder="Tell us briefly about your situation..." required></textarea><label>Select Services You Need:</label>
+  <input type="checkbox" id="housing" onclick="toggleServiceDetails()" /> <label for="housing">Housing</label><br/>
+  <input type="checkbox" id="education" onclick="toggleServiceDetails()" /> <label for="education">Education</label><br/>
+  <input type="checkbox" id="welcome" onclick="toggleServiceDetails()" /> <label for="welcome">Welcome After Release</label><br/>
+
+  <button type="submit">Submit Intake Form</button>
+</form>
+
+<div id="housingDetails" class="card" style="display:none">
+  <h4>Housing Support</h4>
+  <p>We offer emergency and transitional housing assistance.</p>
+  <a href="https://example.com/housing-form.pdf" download>Download Housing Application</a>
+  <p><a href="https://calendar.google.com/" target="_blank">Book a Housing Appointment</a></p>
+</div>
+
+<div id="educationDetails" class="card" style="display:none">
+  <h4>Education Support</h4>
+  <p>Get access to GED programs, workshops, and tutoring.</p>
+  <a href="https://example.com/education-form.pdf" download>Download Education Enrollment Form</a>
+  <p><a href="https://calendar.google.com/" target="_blank">Book an Education Intake</a></p>
+</div>
+
+<div id="welcomeDetails" class="card" style="display:none">
+  <h4>Reentry Welcome</h4>
+  <p>For those recently released from incarceration, we provide support, community integration, and case management.</p>
+  <a href="https://example.com/reentry-form.pdf" download>Download Reentry Services Form</a>
+  <p><a href="https://calendar.google.com/" target="_blank">Book Reentry Support Appointment</a></p>
+</div>
+
+  </section>  <!-- Remaining sections unchanged -->  <!-- Donate, Resources, Team, Testimonials, Contact, Footer --></body>
+</html>
