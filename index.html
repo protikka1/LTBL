@@ -1,4 +1,4 @@
-DOCTYPE html><html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -58,6 +58,7 @@ DOCTYPE html><html lang="en">
     footer { text-align: center; padding: 1rem; background: #222; color: white; }
     iframe { width: 100%; height: 600px; border: 0; }
     @media(min-width: 768px) { nav { display: flex !important; flex-direction: row; justify-content: center; } .menu-toggle { display: none; } .cards { flex-direction: row; } }
+    .hidden { display: none; }
   </style>  <script>
     function toggleMenu() {
       const nav = document.querySelector('nav');
@@ -93,25 +94,25 @@ DOCTYPE html><html lang="en">
   <button type="submit">Submit Intake Form</button>
 </form>
 
-<div id="housingDetails" class="card" style="display:none">
+<div id="housingDetails" class="card hidden">
   <h4>Housing Support</h4>
   <p>We offer emergency and transitional housing assistance.</p>
   <a href="https://example.com/housing-form.pdf" download>Download Housing Application</a>
-  <p><a href="https://calendar.google.com/" target="_blank">Book a Housing Appointment</a></p>
+  <p><a href="https://calendar.google.com/" target="_blank" rel="noopener">Book a Housing Appointment</a></p>
 </div>
 
-<div id="educationDetails" class="card" style="display:none">
+<div id="educationDetails" class="card hidden">
   <h4>Education Support</h4>
   <p>Get access to GED programs, workshops, and tutoring.</p>
   <a href="https://example.com/education-form.pdf" download>Download Education Enrollment Form</a>
-  <p><a href="https://calendar.google.com/" target="_blank">Book an Education Intake</a></p>
+  <p><a href="https://calendar.google.com/" target="_blank" rel="noopener">Book an Education Intake</a></p>
 </div>
 
-<div id="welcomeDetails" class="card" style="display:none">
+<div id="welcomeDetails" class="card hidden">
   <h4>Reentry Welcome</h4>
   <p>For those recently released from incarceration, we provide support, community integration, and case management.</p>
   <a href="https://example.com/reentry-form.pdf" download>Download Reentry Services Form</a>
-  <p><a href="https://calendar.google.com/" target="_blank">Book Reentry Support Appointment</a></p>
+  <p><a href="https://calendar.google.com/" target="_blank" rel="noopener">Book Reentry Support Appointment</a></p>
 </div>
 
   </section>  <!-- Remaining sections unchanged -->  <!-- Donate, Resources, Team, Testimonials, Contact, Footer --></body>
