@@ -18,3 +18,7 @@ def signup(request):
         except Exception as e:
             return render(request, 'signup.html', {'error': str(e)})
     return render(request, 'signup.html')
+
+
+def home(request):
+    return render(request, 'core/home.html')
